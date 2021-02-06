@@ -50,12 +50,6 @@ public class CardDeliveryTest {
 
         $("[data-test-id=\"city\"] input").setValue("Челябинск");
 
-        try {
-            Thread.sleep(5000);    //время,чтобы поменять дату вручную(для проверки неординарных случаев);
-        } catch (Exception e) {
-
-        }
-
         SelenideElement calendar_button = $(".input__icon");
         calendar_button.click();
 
@@ -94,12 +88,6 @@ public class CardDeliveryTest {
             } else {
                 $$(".calendar__row").get(2).findAll("td").get(current_date_column).click();
             }
-        }
-
-        try {
-            Thread.sleep(5000);  //дополнительное время, чтобы отследить корректный результат
-        } catch (Exception e) {
-
         }
 
         $("[data-test-id=\"name\"] input").setValue("Виктория");
