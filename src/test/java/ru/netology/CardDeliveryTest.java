@@ -3,8 +3,6 @@ package ru.netology;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -17,18 +15,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
 
-    @BeforeEach
-    void init() {
-        open("http://localhost:9999");
-    }
-
-    @AfterEach
-    void finish() {
-        closeWebDriver();
-    }
-
     @Test
     void shouldSendValidData() {
+        open("http://localhost:9999");
         $("[data-test-id=\"city\"] input").setValue("Челябинск");
         LocalDate dateDelivery = LocalDate.now().plusDays(3);
         String inputDate = dateDelivery.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
@@ -42,6 +31,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldSelectCityFromTheList() {
+        open("http://localhost:9999");
         $("[data-test-id=\"city\"] input").setValue("Че");
         $$(".menu-item").find(exactText("Челябинск")).click();
         LocalDate dateDelivery = LocalDate.now().plusDays(3);
@@ -56,6 +46,8 @@ public class CardDeliveryTest {
 
     @Test
     void shouldSelectDataFromTheCalendar() {
+        open("http://localhost:9999");
+
         $("[data-test-id=\"city\"] input").setValue("Челябинск");
 
         SelenideElement calendar_button = $(".input__icon");
